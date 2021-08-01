@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('web.index');
+})->name('home');
+
+Auth::routes();
+
+
+require __DIR__ . '/dashboard.php';
+require __DIR__ . '/user.php';
+require __DIR__ . '/manager.php';
+
+
+

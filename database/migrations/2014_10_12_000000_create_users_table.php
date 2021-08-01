@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('type')->nullable();
             $table->string('domains')->nullable();
             $table->string('password');
+            $table->float('weight', 5, 2)->nullable()->default('9.99');
+            $table->boolean('status')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
