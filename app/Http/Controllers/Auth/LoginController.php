@@ -47,7 +47,7 @@ class LoginController extends Controller
     protected function redirectTo($user)
     {
         if ($user->type == 'user') {
-            return redirect()->route('user./');
+            return redirect()->route('home');
         }else if ($user->type == 'manager') {
             return redirect()->route('manager./');
         } else if ($user->type == 'dashboard') {

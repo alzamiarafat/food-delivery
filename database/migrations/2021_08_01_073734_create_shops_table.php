@@ -18,6 +18,7 @@ class CreateShopsTable extends Migration
             $table->string('name')->nullable();
             $table->string('contact_no')->nullable();
             $table->string('email')->unique();
+            $table->boolean('status')->default(true);
             $table->string('address')->nullable();
             $table->timestamps();
         });

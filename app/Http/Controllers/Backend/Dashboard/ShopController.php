@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -10,11 +11,12 @@ class ShopController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function index()
     {
-        //
+        $shopList = Shop::all();
+        return view('dashboard.shop.shop_list', compact('shopList'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.shop.shop_inputs');
     }
 
     /**

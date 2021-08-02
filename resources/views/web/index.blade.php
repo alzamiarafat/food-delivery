@@ -56,5 +56,11 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <!-- custom js file link  -->
         <script src="{{asset('script.js')}}"></script>
+
+        <script>
+            $(document).ready(function() {
+                demo.initGoogleMaps();
+            });
+        </script>
 </body>
 </html>

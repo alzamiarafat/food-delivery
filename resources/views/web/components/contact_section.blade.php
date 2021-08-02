@@ -5,7 +5,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="images/order-img.jpg" alt="">
+            <div id="map"></div>
         </div>
 
         <form action="">
