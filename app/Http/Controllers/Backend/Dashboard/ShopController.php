@@ -33,11 +33,34 @@ class ShopController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'contact_no' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'division' => 'required',
+            'district' => 'required',
+            'thana' => 'required',
+            'postal_code' => 'required',
+        ]);
+        $shop = new Shop;
+        $shop->shop_code = $request->shop_code;
+        $shop->name = $request->name;
+        $shop->contact_no= $request->contact_no;
+        $shop->email = $request->email;
+        $shop->address = $request->address;
+        $shop->division = $request->division;
+        $shop->district = $request->district;
+        $shop->thana = $request->thana;
+        $shop->postal_code = $request->postal_code;
+        $shop->save();
+
+        return redirect()->route('dashboard.shop.index')->with('message_success', 'Shop has been updated successfully.');
+
     }
 
     /**

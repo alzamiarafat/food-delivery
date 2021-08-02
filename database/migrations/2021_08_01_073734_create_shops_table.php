@@ -16,10 +16,15 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('shop_code')->nullable();
             $table->string('contact_no')->nullable();
             $table->string('email')->unique();
             $table->boolean('status')->default(true);
             $table->string('address')->nullable();
+            $table->string('division')->nullable();
+            $table->string('district')->nullable();
+            $table->string('thana')->nullable();
+            $table->integer('postal_code')->nullable();
             $table->timestamps();
         });
     }

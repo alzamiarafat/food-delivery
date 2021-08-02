@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,6 +16,12 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard.dashboard');
+    }
+
+    public function profile_index()
+    {
+        $profile = Profile::where('user_id',auth()->user()->id)->first();
+        return view('dashboard.profile',compact('profile'));
     }
 
     /**

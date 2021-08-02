@@ -1,10 +1,12 @@
 @extends('dashboard.index')
 
+@section('breadcrumbs')
+    <li class="breadcrumb-item"><a href="{{ Route::current()->getName() != 'dashboard.shop.index' ? route('dashboard.shop.index') : '' }}">Shop</a></li>
+    @yield('shop_breadcrumbs')
+@endsection
+
 @section('dashboard_content')
 
-    <div class="content">
-        <div class="container-fluid">
-            @yield('shop_content')
-        </div>
-    </div>
+    @yield('shop_content')
+
 @endsection

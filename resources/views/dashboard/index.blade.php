@@ -11,11 +11,13 @@
 
         <!--     Fonts and icons     -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
         <link href="{{asset('css/material-dashboard.css')}}" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{{asset('css/demo.css')}}" rel="stylesheet" />
+        @stack('style')
     </head>
 
     <body>
@@ -28,8 +30,18 @@
                 <div class="main-panel">
                     <!-- Navbar -->
                     @include('dashboard.layouts.header')
-
-                    @yield('dashboard_content')
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="breadcrumb-box">
+                                <ul class="breadcrumb" style="background: #f9f9f9;">
+                                    <li class="breadcrumb-item"><a href="{{ Route::current()->getName() != 'dashboard./' ? route('dashboard./') : '' }}">Dashboard</a></li>
+                                    @yield('breadcrumbs')
+                                </ul>
+                            </div>
+                            @include('layouts.message')
+                            @yield('dashboard_content')
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,8 +89,15 @@
         <script src="{{asset('js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{asset('js/demo.js')}}"></script>
+        @stack('scripts')
         <script>
             $(document).ready(function() {
+                    $().ready(function(){
+
+                    $('.alert').delay(1500);
+                    $('.alert').hide(1000);
+                });
+
                 $().ready(function() {
                     $sidebar = $('.sidebar');
 
