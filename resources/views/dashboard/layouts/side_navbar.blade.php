@@ -16,14 +16,14 @@
                     <p>Shops</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./typography.html">
+            <li class="nav-item {{ Route::current()->getName() == 'dashboard.manager.index' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.manager.index')}}">
                     <i class="material-icons">manage_accounts</i>
-                    <p>Manager</p>
+                    <p>Managers</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./user.html">
+            <li class="nav-item {{ Route::current()->getName() == 'dashboard.user.index' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.user.index')}}">
                     <i class="material-icons">person</i>
                     <p>Users</p>
                 </a>

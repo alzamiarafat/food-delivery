@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -95,6 +96,31 @@ class DatabaseSeeder extends Seeder
             'type' => 'user',
             'weight' => 9.99,
             'password' => bcrypt($pass),
+        ]);
+
+        Profile::create([
+            'user_id' => '1',
+        ]);
+        Profile::create([
+            'user_id' => '2',
+        ]);
+        Profile::create([
+            'user_id' => '3',
+        ]);
+        Profile::create([
+            'user_id' => '4',
+        ]);
+        Profile::create([
+            'user_id' => '5',
+        ]);
+        Profile::create([
+            'user_id' => '6',
+        ]);
+        Profile::create([
+            'user_id' => '7',
+        ]);
+        Profile::create([
+            'user_id' => '8',
         ]);
     }
 }

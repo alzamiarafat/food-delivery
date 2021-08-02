@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Backend\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
 {
+    public function manager_panel()
+    {
+        return view('manager.index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +21,19 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        return view('manager.index');
+        $managerList = User::where('type','manager')->with('profile')->get();
+
+        return view('dashboard.manager.manager_list',compact('managerList'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function create()
     {
-        //
+        return view('dashboard.manager.manager_inputs');
     }
 
     /**
@@ -35,7 +44,7 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
