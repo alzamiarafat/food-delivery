@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class ShopController extends Controller
 {
@@ -22,7 +23,7 @@ class ShopController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function create()
     {
@@ -48,6 +49,7 @@ class ShopController extends Controller
             'postal_code' => 'required',
         ]);
         $shop = new Shop;
+        $shop->owner_id = auth()->user()->id;
         $shop->shop_code = $request->shop_code;
         $shop->name = $request->name;
         $shop->contact_no= $request->contact_no;
@@ -59,7 +61,7 @@ class ShopController extends Controller
         $shop->postal_code = $request->postal_code;
         $shop->save();
 
-        return redirect()->route('dashboard.shop.index')->with('message_success', 'Shop has been updated successfully.');
+        return redirect()->route('dashboard.shop.index')->with('message_success', 'Shop has been created successfully.');
 
     }
 

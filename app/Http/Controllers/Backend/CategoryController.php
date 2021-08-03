@@ -10,11 +10,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function index()
     {
-        //
+        return view('dashboard.category.category_list');
     }
 
     /**

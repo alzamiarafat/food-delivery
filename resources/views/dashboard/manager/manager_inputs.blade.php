@@ -8,7 +8,8 @@
 
 @section('manager_content')
 
-    <form>
+    <form action="{{route('dashboard.manager.store')}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-md-8">
                 <div class="card card-user">
@@ -20,13 +21,25 @@
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Full Name</label>
-                                    <input type="text" class="form-control" name="full_name" placeholder="Enter Full Name">
+                                    <input type="text" class="form-control @error('full_name') is-invalid @enderror" name="full_name" value="{{old('full_name')}}" placeholder="Enter Full Name">
+
+                                    @error('full_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" name="username" placeholder="Username">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{old('username')}}" placeholder="Enter Username">
+
+                                    @error('username')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -34,14 +47,26 @@
                         <div class="row">
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" name="email" placeholder="Email">
+                                    <label for="exampleInputEmail1">Email Address</label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" placeholder="Enter Email Address">
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Contact Number</label>
-                                    <input type="tel" class="form-control" name="contact_no" placeholder="Company">
+                                    <input type="tel" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" value="{{old('contact_no')}}" placeholder="Enter Contact Number">
+
+                                    @error('contact_no')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -50,27 +75,69 @@
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Date Of Birth</label>
-                                    <input type="text" class="form-control" name="dob" placeholder="Email">
+                                    <input type="date" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{old('date_of_birth')}}" placeholder="dd-mm-yyyy">
+
+                                    @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Gender</label>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control @error('gender') is-invalid @enderror" name="gender">
                                         <option disabled selected>Choose One</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="male" {{old('gender') == 'male' ? 'selected' : ''}}>Male</option>
+                                        <option value="female" {{old('gender') == 'female' ? 'selected' : ''}}>Female</option>
+                                        <option value="other" {{old('gender') == 'other' ? 'selected' : ''}}>Other</option>
                                     </select>
+
+                                    @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 pr-1">
+                            <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>NID Number</label>
-                                    <input type="text" class="form-control" name="nid" placeholder="Home Address">
+                                    <input type="text" class="form-control @error('nid') is-invalid @enderror" name="nid" value="{{old('nid')}}" placeholder="Enter NID Number">
+
+                                    @error('nid')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Shop Name</label>
+                                    <select class="form-control @error('shop_id') is-invalid @enderror" name="shop_id">
+                                        <option disabled selected>Choose One</option>
+                                        @foreach($shopList as $k => $shop)
+                                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('shop_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 pr-1">
+                                <div class="form-group">
+                                    <label></label>
+                                    <a class="form-control btn btn-primary text-center" href="{{route('dashboard.shop.create')}}"><span class="material-icons">add</span> Add Shop</a>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +146,13 @@
                             <div class="col-md-12 pr-1">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" class="form-control" name="address" placeholder="Home Address">
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{old('address')}}" placeholder="Enter Home Address">
+
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -89,13 +162,25 @@
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="City">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"  placeholder="Enter Password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="Country">
+                                    <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" placeholder="Enter Confirm Password">
+
+                                    @error('confirm_password')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -111,17 +196,34 @@
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-body">
-                        <a href="javascript:;" class="btn btn-primary btn-round"><input type="file" class="img" /></a>
+                        <label>Profile Picture</label>
+                        <input type="file" name="image" class="form-control img @error('image') is-invalid @enderror" accept=".jpg, .png, .gif" onchange="readURL(this, 'imageView');" />
+
+                        @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                        <b id="imageViewAlert" class="text-danger hide">
+                            Maximum allowed size is 5 MB
+                        </b>
+
+{{--                        <b id="imageViewTypeAlert" class="text-danger hide">--}}
+{{--                            File format is not supported!--}}
+{{--                        </b>--}}
+                        <img id="imageView" alt="image" class="mt-2 img-fluid img-thumbnail hide">
                     </div>
                 </div>
             </div>
-
         </div>
-    </form>
+
+    </div>
+</form>
 
 
 
-{{--    <div class="row">--}}
+                        {{--    <div class="row">--}}
 {{--        <div class="col-md-12">--}}
 {{--            <div class="card">--}}
 {{--                <div class="card-header card-header-primary">--}}
@@ -205,3 +307,75 @@
 {{--    </div>--}}
 
 @endsection
+
+@push('scripts')
+    <script>
+        // instant image read and display
+        function readURL(input, preview){
+            if (input.files && input.files[0])
+            {
+                var inputValue = input.value;
+                var inputType = inputValue.substring(inputValue.lastIndexOf('.') + 1);
+
+                var fileTypes = ['jpg','jpeg','png','gif'];
+                var imgDiv = document.getElementById(preview);
+                var alertDiv = document.getElementById(preview+"Alert");
+
+                if(input.files[0].size <= 5600000) {
+                    if (fileTypes.find(fileType => { if( fileType === inputType){return fileType;}})){
+                        imgDiv.classList.remove("hide");
+                        imgDiv.classList.remove("d-none");
+                        $('#'+preview+'TypeAlert').addClass('hide');
+                        alertDiv.classList.add("hide");
+                        alertDiv.classList.add("d-none");
+                        var reader = new FileReader();
+                        reader.onload = function (e)
+                        {
+                            $('#'+preview)
+                                .attr('src', e.target.result)
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }else{
+                        $('#'+preview+'TypeAlert').addClass('file-type');
+                        $('#'+preview+'TypeAlert').removeClass('hide');
+                        imgDiv.classList.add("hide");
+                        imgDiv.classList.add("d-none");
+                        alertDiv.classList.add("hide");
+                    }
+
+                }else{
+                    imgDiv.classList.add("hide");
+                    imgDiv.classList.add("d-none");
+                    alertDiv.classList.remove("hide");
+                    alertDiv.classList.remove("d-none");
+                    $('#'+preview+'TypeAlert').addClass('hide');
+                    $('#'+preview+'TypeAlert').removeClass('file-type');
+
+                }
+
+            }
+        }
+
+        /*  how to use in blade
+
+            input sample
+            <input class="form-control" id="favicon" type="file" accept=".jpg, .png, .gif" name="favicon" onchange="readURL(this, 'faviconView');">
+
+            preview sample
+            <img id="faviconView" src="" alt="favicon" class=" img-responsive img-thumbnail">
+
+            warning sample
+            <span id="faviconViewAlert" class="text-danger hide">
+                * Update will delete the old favicon automatically <br>
+                Please, select Image with Maximum weight of 5 MB
+            </span>
+        */
+
+        // validate email
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        }
+    </script>
+@endpush

@@ -1,3 +1,5 @@
+@php $routeName = Route::current()->getName();
+@endphp
 <div class="sidebar" data-color="purple" data-background-color="white">
     <div class="logo">
         <a href="{{route('home')}}" class="simple-text logo-normal"><span class="material-icons">restaurant</span> food</a>
@@ -10,26 +12,26 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item {{ Route::current()->getName() == 'dashboard.shop.index' ? 'active' : '' }}">
+            <li class="nav-item {{ $routeName == 'dashboard.shop.index' || $routeName == 'dashboard.shop.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.shop.index')}}">
                     <i class="material-icons">store</i>
                     <p>Shops</p>
                 </a>
             </li>
-            <li class="nav-item {{ Route::current()->getName() == 'dashboard.manager.index' ? 'active' : '' }}">
+            <li class="nav-item {{ Route::current()->getName() == 'dashboard.manager.index' || $routeName == 'dashboard.manager.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.manager.index')}}">
                     <i class="material-icons">manage_accounts</i>
                     <p>Managers</p>
                 </a>
             </li>
-            <li class="nav-item {{ Route::current()->getName() == 'dashboard.user.index' ? 'active' : '' }}">
+            <li class="nav-item {{ Route::current()->getName() == 'dashboard.user.index' || $routeName == 'dashboard.user.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.user.index')}}">
                     <i class="material-icons">person</i>
                     <p>Users</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./user.html">
+            <li class="nav-item {{ $routeName == 'dashboard.category.index' || $routeName == 'dashboard.category.create' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.category.index')}}">
                     <i class="material-icons">category</i>
                     <p>Category</p>
                 </a>
