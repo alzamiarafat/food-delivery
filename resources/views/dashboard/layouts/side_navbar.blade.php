@@ -2,7 +2,7 @@
 @endphp
 <div class="sidebar" data-color="purple" data-background-color="white">
     <div class="logo">
-        <a href="{{route('home')}}" class="simple-text logo-normal"><span class="material-icons">restaurant</span> food</a>
+        <a href="{{route('home')}}" class="simple-text logo-normal"><span class="material-icons">restaurant</span> alesha food</a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">

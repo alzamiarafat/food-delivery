@@ -9,6 +9,6 @@ class Profile extends Model
 {
     use HasFactory;
 
-    const PATH = 'profile_image';
+    const PATH = 'profile_images';
 
 }

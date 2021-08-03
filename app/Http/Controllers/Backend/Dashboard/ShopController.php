@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Shop;
+use App\Models\Shop\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
@@ -18,6 +18,7 @@ class ShopController extends Controller
     {
         $shopList = Shop::all();
         return view('dashboard.shop.shop_list', compact('shopList'));
+
     }
 
     /**

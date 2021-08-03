@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Backend\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
-use App\Models\Shop;
+use App\Models\Shop\Shop;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

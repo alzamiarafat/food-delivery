@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopProductsTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,21 @@ class CreateShopProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_products', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('shop_id')->unsigned()->nullable();
             $table->bigInteger('category_id')->unsigned()->nullable();
-            $table->bigInteger('product_id')->unsigned()->nullable();
+            $table->string('name')->nullable();
+            $table->string('image')->nullable();
+            $table->string('currency')->nullable();
+            $table->double('price')->nullable();
+            $table->enum('discount_type', ['fixed', 'percentage'])->nullable();
+            $table->double('discount_amount')->nullable();
+            $table->text('short_description')->nullable();
+            $table->text('long_description')->nullable();
             $table->timestamps();
-
-            $table->foreign('shop_id')->references('id')
-                ->on('shops')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
 
             $table->foreign('category_id')->references('id')
                 ->on('categories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->foreign('product_id')->references('id')
-                ->on('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -44,6 +40,6 @@ class CreateShopProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_products');
+        Schema::dropIfExists('items');
     }
 }

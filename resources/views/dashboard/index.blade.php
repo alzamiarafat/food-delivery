@@ -12,6 +12,7 @@
         <!--     Fonts and icons     -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
         <link href="{{asset('css/material-dashboard.css')}}" rel="stylesheet" />
@@ -48,13 +49,12 @@
 
         <!--   Core JS Files   -->
         <script src="{{asset('js/core/jquery.min.js')}}"></script>
+        <script src="{{asset('js/image.js')}}"></script>
         <script src="{{asset('js/core/popper.min.js')}}"></script>
         <script src="{{asset('js/core/bootstrap-material-design.min.js')}}"></script>
         <script src="{{asset('js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
         <!-- Plugin for the momentJs  -->
         <script src="{{asset('js/plugins/moment.min.js')}}"></script>
-        <!--  Plugin for Sweet Alert -->
-        <script src="{{asset('js/plugins/sweetalert2.js')}}"></script>
         <!-- Forms Validations Plugin -->
         <script src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
         <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
@@ -273,6 +273,12 @@
                 md.initDashboardPageCharts();
 
             });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                $('.table').dataTable();
+            })
         </script>
     </body>
 </html>
