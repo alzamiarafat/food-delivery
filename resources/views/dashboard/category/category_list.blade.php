@@ -24,7 +24,7 @@
                                 <th class="font-weight-bold">Name</th>
                                 <th class="font-weight-bold">Image</th>
                                 <th class="font-weight-bold">Serial Number</th>
-                                <th class="font-weight-bold">Products</th>
+                                <th class="font-weight-bold">Items</th>
                                 <th class="font-weight-bold">Status</th>
                                 <th class="font-weight-bold">Action</th>
                             </thead>

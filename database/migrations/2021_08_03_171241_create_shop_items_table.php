@@ -17,7 +17,7 @@ class CreateShopItemsTable extends Migration
             $table->id();
             $table->bigInteger('shop_id')->unsigned()->nullable();
             $table->bigInteger('category_id')->unsigned()->nullable();
-            $table->bigInteger('product_id')->unsigned()->nullable();
+            $table->bigInteger('item_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('shop_id')->references('id')
@@ -30,7 +30,7 @@ class CreateShopItemsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreign('product_id')->references('id')
+            $table->foreign('item_id')->references('id')
                 ->on('items')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

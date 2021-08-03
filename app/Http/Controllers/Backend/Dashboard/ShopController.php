@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
 class ShopController extends Controller
 {

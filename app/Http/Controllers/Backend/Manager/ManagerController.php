@@ -47,7 +47,7 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'full_name' => 'required',
             'username' => 'required',
             'email' => 'required',

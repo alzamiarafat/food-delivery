@@ -165,7 +165,7 @@
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"  placeholder="Enter Password">
 
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -177,16 +177,16 @@
                                     <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" placeholder="Enter Confirm Password">
 
                                     @error('confirm_password')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <div class="row">
                             <div class="update ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary btn-round">Save</button>
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
                             </div>
                         </div>
                     </div>

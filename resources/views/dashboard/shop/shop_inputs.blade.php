@@ -20,12 +20,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Shop Code</label>
-                                    <input type="text" class="form-control" id="code" name="shop_code" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label class="bmd-label-floating">Shop Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" onblur="code_generate()">
 
@@ -36,6 +30,12 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Shop Code</label>
+                                    <input type="text" class="form-control" id="code" name="shop_code" readonly>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -44,7 +44,7 @@
                                     <input type="text" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no">
 
                                     @error('contact_no')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -56,7 +56,7 @@
                                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email">
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -70,7 +70,7 @@
                                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address">
 
                                     @error('address')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -84,7 +84,7 @@
                                     <input type="text" class="form-control @error('division') is-invalid @enderror" name="division">
 
                                     @error('division')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -96,7 +96,7 @@
                                     <input type="text" class="form-control @error('district') is-invalid @enderror" name="district">
 
                                     @error('district')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -108,7 +108,7 @@
                                     <input type="text" class="form-control @error('thana') is-invalid @enderror" name="thana">
 
                                     @error('thana')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -123,9 +123,9 @@
                                         <input type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code">
 
                                         @error('postal_code')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                 </div>

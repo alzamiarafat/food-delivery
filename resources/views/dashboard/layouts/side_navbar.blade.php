@@ -15,19 +15,19 @@
             <li class="nav-item {{ $routeName == 'dashboard.shop.index' || $routeName == 'dashboard.shop.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.shop.index')}}">
                     <i class="material-icons">store</i>
-                    <p>Shops</p>
+                    <p>Shop</p>
                 </a>
             </li>
             <li class="nav-item {{ Route::current()->getName() == 'dashboard.manager.index' || $routeName == 'dashboard.manager.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.manager.index')}}">
                     <i class="material-icons">manage_accounts</i>
-                    <p>Managers</p>
+                    <p>Manager</p>
                 </a>
             </li>
             <li class="nav-item {{ Route::current()->getName() == 'dashboard.user.index' || $routeName == 'dashboard.user.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.user.index')}}">
                     <i class="material-icons">person</i>
-                    <p>Users</p>
+                    <p>User</p>
                 </a>
             </li>
             <li class="nav-item {{ $routeName == 'dashboard.category.index' || $routeName == 'dashboard.category.create' ? 'active' : '' }}">
@@ -36,10 +36,10 @@
                     <p>Category</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./user.html">
+            <li class="nav-item {{ $routeName == 'dashboard.item.index' || $routeName == 'dashboard.item.create' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.item.index')}}">
                     <i class="material-icons">fastfood</i>
-                    <p>Product</p>
+                    <p>Item</p>
                 </a>
             </li>
             <li class="nav-item ">

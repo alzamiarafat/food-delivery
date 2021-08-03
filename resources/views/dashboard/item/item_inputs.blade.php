@@ -1,32 +1,26 @@
-@extends('dashboard.shop.index')
+@extends('dashboard.item.index')
 
-@section('title','Shop | Create')
+@section('title','Item | Create')
 
-@section('shop_breadcrumbs')
+@section('item_breadcrumbs')
     <li class="breadcrumb-item"><a>Create</a></li>
 @endsection
 
-@section('shop_content')
+@section('item_content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">Create Shop</h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{route('dashboard.shop.store')}}" method="POST">
-                        @csrf
+    <form action="{{route('dashboard.item.store')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Create Item</h4>
+                    </div>
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Shop Code</label>
-                                    <input type="text" class="form-control" id="code" name="shop_code" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Shop Name</label>
+                                    <label class="bmd-label-floating">Item Name</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" onblur="code_generate()">
 
                                     @error('name')
@@ -36,108 +30,181 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Item Code</label>
+                                    <input type="text" class="form-control" id="code" name="item_code" readonly>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Contact Number</label>
-                                    <input type="text" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no">
+                                    <label class="bmd-label-floating">Shop Name</label>
+                                    <select class="form-control  @error('shop_name') is-invalid @enderror" name="shop_name">
+                                        <option disabled selected>Choose One</option>
+                                        @foreach($shopList as $shop)
+                                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                        @endforeach
+                                    </select>
 
-                                    @error('contact_no')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email">
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Adress</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address">
-
-                                    @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Division</label>
-                                    <input type="text" class="form-control @error('division') is-invalid @enderror" name="division">
-
-                                    @error('division')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">District</label>
-                                    <input type="text" class="form-control @error('district') is-invalid @enderror" name="district">
-
-                                    @error('district')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Thana</label>
-                                    <input type="text" class="form-control @error('thana') is-invalid @enderror" name="thana">
-
-                                    @error('thana')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating"> Postal Code</label>
-                                        <input type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code">
-
-                                        @error('postal_code')
+                                    @error('shop_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Category Name</label>
+                                    <select class="form-control  @error('category_name') is-invalid @enderror" name="category_name">
+                                        <option disabled selected>Choose One</option>
+                                        @foreach($categoryList as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('category_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"></label>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal">
+                                        <span class="material-icons">add</span> Add New
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Discount Type</label>
+                                    <select class="form-control" name="discount_type">
+                                        <option disabled selected>Choose One</option>
+                                        <option value="fixed">Fixed</option>
+                                        <option value="percentage">Percentage</option>
+                                    </select>
+
+                                    @error('discount_type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Discount Amount</label>
+                                    <input type="text" class="form-control @error('discount_amount') is-invalid @enderror" name="discount_amount">
+
+                                    @error('discount_amount')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Currency</label>
+                                    <input type="text" class="form-control @error('currency') is-invalid @enderror" name="currency">
+
+                                    @error('currency')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Price</label>
+                                    <input type="text" class="form-control @error('price') is-invalid @enderror" name="price">
+
+                                    @error('price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Short Description</label>
+                                    <input type="text" class="form-control @error('short_description') is-invalid @enderror" name="short_description">
+
+                                    @error('short_description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating"> Long Description</label>
+                                        <input type="text" class="form-control @error('long_description') is-invalid @enderror" name="long_description">
+
+                                        @error('long_description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <button type="submit" class="btn btn-primary pull-right">Save</button>
                         <div class="clearfix"></div>
-                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-body">
+                        <label>Item Image</label>
+                        <input type="file" name="image" class="form-control img @error('image') is-invalid @enderror" accept=".jpg, .png, .gif" onchange="readURL(this, 'photoView');" />
+
+                        @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                        <b id="photoViewAlert" class="text-danger hide">
+                            Maximum allowed size is 5 MB
+                        </b>
+
+                        {{--                        <b id="imageViewTypeAlert" class="text-danger hide">--}}
+                        {{--                            File format is not supported!--}}
+                        {{--                        </b>--}}
+                        <img id="photoView" alt="image" class="mt-2 img-fluid img-thumbnail hide">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
+
+    @include('dashboard.category.category_inputs')
 
 @endsection
 @push('scripts')

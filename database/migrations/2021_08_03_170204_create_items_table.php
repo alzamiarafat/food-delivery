@@ -15,8 +15,8 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')->unsigned()->nullable();
             $table->string('name')->nullable();
+            $table->string('item_code')->nullable();
             $table->string('image')->nullable();
             $table->string('currency')->nullable();
             $table->double('price')->nullable();
@@ -25,11 +25,6 @@ class CreateItemsTable extends Migration
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')
-                ->on('categories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 
