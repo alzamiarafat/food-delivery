@@ -8,6 +8,6 @@
         <a href="#" class="btn">linkedin</a>
     </div>
 
-    <h1 class="credit"> created by <span> Food </span> | all rights reserved! </h1>
+    <h1 class="credit"> created by <span> Alesha Food </span> | all rights reserved! </h1>
 
 </section>

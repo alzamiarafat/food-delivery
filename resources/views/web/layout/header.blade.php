@@ -16,7 +16,13 @@
             <a href="{{route('login')}}"><i class="fa fa-user"></i>{{ __(' Login') }}</a>
         @endauth
 
-        <a href=""><i class="fa fa-shopping-cart"></i></a>
+        <a type="button" class="position-relative" data-toggle="modal" data-target="#cartModal" href="">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ Cart::content()->count() }}</span>
+            </span>
+        </a>
     </nav>
-
 </header>
+
+<!-- Modal -->
+@include('web.modals.cart.cart_sidebar_modal')

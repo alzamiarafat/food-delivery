@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\User;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
+use Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        if (Auth::check()>0){
-            return view('web.checkout');
-        }else {
-            return redirect()->route('login');
-        }
+        //
     }
 
     /**
@@ -40,7 +37,10 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $item = Item::findOrFail($request->item_id);
+        Cart::add($item->id, $item->name, 1, $item->price,0,['image' => $item->image]);
+
+        return back();
     }
 
     /**
@@ -52,6 +52,17 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+    }
+ /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function remove($rowId)
+    {
+        Cart::remove($rowId);
+        return back();
     }
 
     /**

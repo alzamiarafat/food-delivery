@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend\User;
+namespace App\Http\Controllers\Backend\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class OfferController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        if (Auth::check()>0){
-            return view('web.checkout');
-        }else {
-            return redirect()->route('login');
-        }
+        //
     }
 
     /**
@@ -40,7 +35,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**

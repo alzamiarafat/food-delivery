@@ -17,6 +17,6 @@ class HomeController extends Controller
         $categoryList = Category::where('status',1)->orderBy('serial_no','ASC')->get();
         $itemList = Item::orderBy('id','DESC')->take(10)->get();
 
-        return view('web.index',compact('categoryList','itemList'));
+        return view('web.home',compact('categoryList','itemList'));
     }
 }
