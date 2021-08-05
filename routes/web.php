@@ -17,7 +17,7 @@ use App\Http\Controllers\Backend\User\OrderController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/cart-store', [CartController::class, 'store'])->name('cart.store');
 Route::get('/cart-remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-Route::get('/checkout', [OrderController::class, 'index'])->name('checkout.index');
+Route::get('/checkout', [OrderController::class, 'checkout_index'])->name('checkout.index');
 Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 
 Auth::routes();

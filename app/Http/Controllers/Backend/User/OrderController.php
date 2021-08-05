@@ -3,23 +3,39 @@
 namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Cart;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return null
      */
-    public function index()
+    public function checkout_index()
     {
         if (Auth::check()>0){
-            return view('web.checkout');
+            $items = Cart::content();
+            $totalPrice = 0;
+
+            foreach ($items as $item){
+                $price = $item->price;
+                $totalPrice += $price;
+
+            }
+            return view('web.checkout',compact('totalPrice'));
         }else {
             return redirect()->route('login');
         }
+    }
+    public function index()
+    {
+        $orderList = Order::where('user_id', auth()->user()->id)->get();
+
+        return view('user.order.order_list',compact('orderList'));
     }
 
     /**
@@ -36,11 +52,25 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function store(Request $request)
     {
-        return $request;
+        try {
+            $order = new Order;
+
+            $order->user_id = auth()->user()->id;
+            $order->sub_total = $request->sub_total;
+            $order->delivery_cost = $request->delivery_cost;
+            $order->total = $request->total;
+            $order->save();
+            foreach (Cart::content() as $item){
+                Cart::remove($item->rowId);
+            }
+            return redirect()->back()->with('message_success', 'Offer has been created successfully.');
+        }catch (\Exception $exception){
+            return redirect()->back()->with('message_error', 'Something went wrong.');
+        }
     }
 
     /**

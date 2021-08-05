@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function panel()
     {
-        return view('user.index');
+        return view('user.panel');
     }
 
     public function index ()

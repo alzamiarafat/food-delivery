@@ -45,13 +45,13 @@
             <li class="nav-item ">
                 <a class="nav-link" href="./icons.html">
                     <i class="material-icons">reorder</i>
-                    <p>Orders</p>
+                    <p>Order</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./icons.html">
+            <li class="nav-item {{ $routeName == 'dashboard.offer.index' || $routeName == 'dashboard.offer.create' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.offer.index')}}">
                     <i class="material-icons">local_offer</i>
-                    <p>Offers</p>
+                    <p>Offer</p>
                 </a>
             </li>
             <li class="nav-item ">

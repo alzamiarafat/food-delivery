@@ -16,9 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->double('subtotal',15,2)->nullable();
+            $table->double('sub_total',15,2)->nullable();
+            $table->double('delivery_cost',15,2)->nullable();
             $table->double('total',15,2)->nullable();
-            $table->bigInteger('promo_code_id')->unsigned()->nullable();
+            $table->bigInteger('offer_id')->unsigned()->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
 

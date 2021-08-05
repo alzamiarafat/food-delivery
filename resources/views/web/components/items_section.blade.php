@@ -24,7 +24,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                                <button class="btn" type="submit">order</button>
+                                <button class="btn" type="submit">Order Now</button>
                             <!-- Button trigger modal -->
 {{--                            <button type="button" class="btn order-btn" data-toggle="modal" data-target=".bd-example-modal-lg">order now</button>--}}
 

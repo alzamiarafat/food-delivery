@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\Manager\ManagerController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\Item\ItemController;
+use App\Http\Controllers\Backend\Dashboard\OfferController;
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.','middleware' => ['auth','dashboard']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('/');
@@ -20,6 +21,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.','middleware' => ['au
     Route::resource('category', CategoryController::class);
 
     Route::resource('item', ItemController::class);
+
+    Route::resource('offer', OfferController::class);
 
 
 });
