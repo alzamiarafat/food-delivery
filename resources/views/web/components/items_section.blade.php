@@ -4,19 +4,21 @@
 
     <div class="box-container">
         <div class="owl-carousel owl-theme">
-
-                @foreach($itemList as $item)
+            @foreach($itemList as $item)
                 <form method="POST" action="{{route('cart.store')}}">
                     @csrf
-                    <input name="item_id" value="{{$item->id}}" hidden readonly>
+                    <input name="item_id" id="item_id" value="{{$item->id}}" hidden readonly>
+
                     <div class="item">
                         <div class="box select-item">
                             @if($item->discount_type != null)
                                 <span class="price">{{$item->discount_type == 'fixed' ? '৳ '.$item->discount_amount : $item->discount_amount.'%'}}</span>
                             @endif
+
                             <img src="{{asset('item_images/'.$item->image)}}" alt="">
                             <h3>{{$item->name}}</h3>
                             <h3 id="price" class="ps-product__price ">৳ {{$item->price}} </h3>
+
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -24,19 +26,18 @@
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                                <button class="btn" type="submit">Order Now</button>
-                            <!-- Button trigger modal -->
-{{--                            <button type="button" class="btn order-btn" data-toggle="modal" data-target=".bd-example-modal-lg">order now</button>--}}
 
+                            <button class="btn addItem" data-id="{{ $item->id }}" type="submit">Order Now</button>
                         </div>
                     </div>
                 </form>
-                @endforeach
-
+            @endforeach
         </div>
     </div>
+
     <!-- Modal -->
     @include('web.modals.order_modal')
+
 </section>
 
 @push('scripts')
@@ -57,16 +58,6 @@
         })
         $('.stop').on('click',function(){
             owl.trigger('stop.owl.autoplay')
-        })
-
-
-        $(document).ready(()=>{
-            $('.order-btn').on('click',()=>{
-                var data = $('#price').text()
-                console.log(data);
-                $('#price').val(data)
-            })
-
-        })
+        });
     </script>
 @endpush

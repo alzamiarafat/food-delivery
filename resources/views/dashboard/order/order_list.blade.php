@@ -1,4 +1,4 @@
-@extends('user.order.index')
+@extends('dashboard.order.index')
 
 @section('title','Order | List')
 
@@ -19,8 +19,8 @@
                             <thead>
                             <th class="font-weight-bold">ID</th>
                             <th class="font-weight-bold">Client Name</th>
-                            <th class="font-weight-bold">Item Name</th>
                             <th class="font-weight-bold">Order ID</th>
+                            <th class="font-weight-bold">Items Name</th>
                             <th class="font-weight-bold">Sub Total</th>
                             <th class="font-weight-bold">Delivery Cost</th>
                             <th class="font-weight-bold">Total</th>
@@ -29,24 +29,23 @@
                             <th class="font-weight-bold">Action</th>
                             </thead>
                             <tbody>
+
                             @foreach($orders as $k => $order)
-                                @if($order->user_id == auth()->user()->id)
-                                    <tr>
-                                        <td>{{ $k+1 }}</td>
-                                        <td>{{$order->full_name}}</td>
-                                        <td>{{$order->id}}</td>
-                                        <td> @foreach($order->items as $k => $item){{$item->name}},  @endforeach</td>
-                                        <td>{{$order->sub_total}}</td>
-                                        <td>{{$order->delivery_cost}}</td>
-                                        <td>{{$order->total}}</td>
-                                        <td>{{$order->contact_no}}</td>
-                                        <td>{{$order->address}}</td>
-                                        <td>
-                                            <a href="{{ route('user.order.show',$order->id) }}"><span class="material-icons">visibility</span></a>&nbsp;
-                                            <a href=""><span class="material-icons">edit</span></a>
-                                        </td>
-                                    </tr>
-                                @endif
+                                <tr>
+                                    <td>{{ $k+1 }}</td>
+                                    <td>{{$order->full_name}}</td>
+                                    <td>{{$order->id}}</td>
+                                    <td> @foreach($order->items as $k => $item){{$item->name}},  @endforeach</td>
+                                    <td>{{$order->sub_total}}</td>
+                                    <td>{{$order->delivery_cost}}</td>
+                                    <td>{{$order->total}}</td>
+                                    <td>{{$order->contact_no}}</td>
+                                    <td>{{$order->address}}</td>
+                                    <td>
+                                        <a href=""><span class="material-icons">visibility</span></a>&nbsp;
+                                        <a href=""><span class="material-icons">edit</span></a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
@@ -57,3 +56,7 @@
     </div>
 @endsection
 
+@push('scripts')
+
+
+@endpush

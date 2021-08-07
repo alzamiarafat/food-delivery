@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Cart;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CartController extends Controller
 {
@@ -33,14 +34,17 @@ class CartController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function store(Request $request)
     {
         $item = Item::findOrFail($request->item_id);
-        Cart::add($item->id, $item->name, 1, $item->price,0,['image' => $item->image]);
+//        $item = Item::findOrFail($request->itemId);
+        $cart = Cart::add($item->id, $item->name, 1, $item->price,0,['unitPrice' => $item->price, 'image' => $item->image]);
+        $count = Cart::content()->count();
 
         return back();
+//        return response()->json(['cartCount' => $count, 'cartItem' => $cart]);
     }
 
     /**
@@ -53,16 +57,46 @@ class CartController extends Controller
     {
         //
     }
- /**
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return null
      */
-    public function remove($rowId)
+    public function remove(Request $request)
     {
-        Cart::remove($rowId);
-        return back();
+        Cart::remove($request->rowId);
+        $cartCount = Cart::content()->count();
+
+        return response()->json(['cartCount' => $cartCount]);
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return null
+     */
+    public function increase(Request $request)
+    {
+        $item = Cart::get($request->id);
+        $unitPrice = $item->options->unitPrice;
+        Cart::update($request->id, array('qty' => $item->qty + 1, 'price' => $unitPrice * $request->qty ));
+
+        return response()->json(['price' => $item->price]);
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return null
+     */
+    public function decrease(Request $request)
+    {
+        $item = Cart::get($request->id);
+        $unitPrice = $item->options->unitPrice;
+        Cart::update($request->id, array('qty' => $item->qty - 1, 'price' => $item->price - $unitPrice));
+
+        return response()->json(['price' => $item->price]);
     }
 
     /**

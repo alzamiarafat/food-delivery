@@ -14,6 +14,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.79/theme-default.min.css" integrity="sha512-8wU/gsExpTv8PS32juUjuZx10OBHgxj5ZWoVDoJKvBrFy524wEKAUgS/64da3Qg4zD5kVwQh3+xFmzzOzFDAtg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- CSS Files -->
         <link href="{{asset('css/material-dashboard.css')}}" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -56,7 +57,7 @@
         <!-- Plugin for the momentJs  -->
         <script src="{{asset('js/plugins/moment.min.js')}}"></script>
         <!-- Forms Validations Plugin -->
-        <script src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.79/jquery.form-validator.min.js" integrity="sha512-7+hQkXGIswtBWoGbyajZqqrC8sa3OYW+gJw5FzW/XzU/lq6kScphPSlj4AyJb91MjPkQc+mPQ3bZ90c/dcUO5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
         <script src="{{asset('js/plugins/jquery.bootstrap-wizard.js')}}"></script>
         <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->

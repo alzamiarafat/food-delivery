@@ -12,7 +12,7 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item {{ Route::current()->getName() == 'user.order.index' ? 'active' : '' }} ">
+            <li class="nav-item {{ Route::current()->getName() == 'user.order.index'||  Route::current()->getName() == 'user.order.show'? 'active' : '' }} ">
                 <a class="nav-link" href="{{ route('user.order.index') }}">
                     <i class="material-icons">reorder</i>
                     <p>Order</p>

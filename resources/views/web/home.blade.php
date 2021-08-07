@@ -1,6 +1,7 @@
 @extends('web.index')
 
 @section('home_content')
+
     <!-- home section starts  -->
     @include('web.components.home_section')
 

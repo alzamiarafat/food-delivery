@@ -1,6 +1,6 @@
 <header>
 
-    <a href="#" class="logo"><i class="fas fa-utensils"></i> alesha food</a>
+    <a href="{{ route('home') }}" class="logo"><i class="fas fa-utensils"></i> alesha food</a>
 
     <div id="menu-bar" class="fas fa-bars"></div>
 
@@ -18,8 +18,7 @@
 
         <a type="button" class="position-relative" data-toggle="modal" data-target="#cartModal" href="">
             <i class="fa fa-shopping-cart"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ Cart::content()->count() }}</span>
-            </span>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary" id="cartCount">{{ Cart::content()->count() }}</span>
         </a>
     </nav>
 </header>

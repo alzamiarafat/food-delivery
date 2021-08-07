@@ -42,8 +42,8 @@
                     <p>Item</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./icons.html">
+            <li class="nav-item {{ $routeName == 'dashboard.order.index' || $routeName == 'dashboard.order.create' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.order.index')}}">
                     <i class="material-icons">reorder</i>
                     <p>Order</p>
                 </a>

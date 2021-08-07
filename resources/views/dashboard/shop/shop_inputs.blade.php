@@ -21,7 +21,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Shop Name</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" onblur="code_generate()">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" data-validation="length" data-validation-length="min2" onblur="code_generate()">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Contact Number</label>
-                                    <input type="text" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no">
+                                    <input type="text" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" data-validation="number length" data-validation-length="min11">
 
                                     @error('contact_no')
                                         <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email">
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" data-validation="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Adress</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address">
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" data-validation="required">
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label class="bmd-label-floating"> Postal Code</label>
-                                        <input type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code">
+                                        <input type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" data-validation="length" data-validation-length="min4">
 
                                         @error('postal_code')
                                             <span class="invalid-feedback" role="alert">
@@ -142,6 +142,9 @@
 @endsection
 @push('scripts')
     <script>
+
+        $.validate()
+
         function code_generate()
         {
             var value = document.getElementById('name').value;
@@ -149,5 +152,6 @@
             document.getElementById('code').value = code;
             console.log(document.getElementById('code').value);
         }
+
     </script>
 @endpush
