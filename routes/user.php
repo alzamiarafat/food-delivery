@@ -10,5 +10,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.','middleware' => ['auth','user'
     Route::get('/', [UserController::class, 'panel'])->name('panel');
 
     Route::resource('order', OrderController::class);
+
+    Route::get('/invoice', [OrderController::class, 'invoice_print'])->name('invoice.print');
+
 });
 

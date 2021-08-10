@@ -34,7 +34,7 @@
                                     <tr>
                                         <td>{{ $k+1 }}</td>
                                         <td>{{$order->full_name}}</td>
-                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->order_id}}</td>
                                         <td> @foreach($order->items as $k => $item){{$item->name}},  @endforeach</td>
                                         <td>{{$order->sub_total}}</td>
                                         <td>{{$order->delivery_cost}}</td>
@@ -42,7 +42,7 @@
                                         <td>{{$order->contact_no}}</td>
                                         <td>{{$order->address}}</td>
                                         <td>
-                                            <a href="{{ route('user.order.show',$order->id) }}"><span class="material-icons">visibility</span></a>&nbsp;
+                                            <a href="{{ route('user.order.show',$order->order_id) }}"><span class="material-icons">visibility</span></a>&nbsp;
                                             <a href=""><span class="material-icons">edit</span></a>
                                         </td>
                                     </tr>

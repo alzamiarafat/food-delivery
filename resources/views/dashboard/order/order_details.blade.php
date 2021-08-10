@@ -1,4 +1,4 @@
-@extends('user.order.index')
+@extends('dashboard.order.index')
 
 @section('title','Order | Details')
 
@@ -31,7 +31,7 @@
                     <div class="toolbar hidden-print">
                         <div class="text-right">
                             <a id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</a>
-                            {{--                            <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>--}}
+{{--                            <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>--}}
                         </div>
                         <hr>
                     </div>
@@ -65,14 +65,14 @@
                                     <tbody>
                                     <tr>
                                         @foreach($orders->items as $k =>$item)
-                                            <td class="no">{{ $k+1 }}</td>
-                                            <td class="text-left">
-                                                <h3>{{ $item->name }}</h3>
+                                        <td class="no">{{ $k+1 }}</td>
+                                        <td class="text-left">
+                                            <h3>{{ $item->name }}</h3>
 
-                                            </td>
-                                            <td class="unit">BDT {{ $item->price }}</td>
-                                            <td class="qty">{{ $item->pivot->quantity }}</td>
-                                            <td class="total">BDT {{ $item->price* $item->pivot->quantity}}</td>
+                                        </td>
+                                        <td class="unit">BDT {{ $item->price }}</td>
+                                        <td class="qty">{{ $item->pivot->quantity }}</td>
+                                        <td class="total">BDT {{ $item->price* $item->pivot->quantity}}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>

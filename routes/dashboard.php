@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
-use App\Http\Controllers\Backend\Dashboard\ShopController;
+use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Manager\ManagerController;
 use App\Http\Controllers\Backend\User\UserController;
-use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\Shop\CategoryController;
 use App\Http\Controllers\Backend\Item\ItemController;
 use App\Http\Controllers\Backend\Dashboard\OfferController;
 use App\Http\Controllers\Backend\User\OrderController;
+use App\Http\Controllers\Backend\Shop\BranchController;
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.','middleware' => ['auth','dashboard']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('/');
@@ -19,6 +20,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.','middleware' => ['au
 
     Route::resource('shop', ShopController::class);
 
+    Route::resource('branch', BranchController::class);
+
     Route::resource('category', CategoryController::class);
 
     Route::resource('item', ItemController::class);
@@ -27,7 +30,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.','middleware' => ['au
 
     Route::resource('order', OrderController::class);
 
-
+    Route::get('/invoice', [OrderController::class, 'invoice_print'])->name('invoice.print');
 
 });
 

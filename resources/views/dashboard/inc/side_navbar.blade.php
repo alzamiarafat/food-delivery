@@ -18,6 +18,12 @@
                     <p>Shop</p>
                 </a>
             </li>
+            <li class="nav-item {{ $routeName == 'dashboard.branch.index' || $routeName == 'dashboard.branch.create' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard.branch.index')}}">
+                    <i class="material-icons">store</i>
+                    <p>Branch</p>
+                </a>
+            </li>
             <li class="nav-item {{ Route::current()->getName() == 'dashboard.manager.index' || $routeName == 'dashboard.manager.create' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.manager.index')}}">
                     <i class="material-icons">manage_accounts</i>
@@ -42,7 +48,7 @@
                     <p>Item</p>
                 </a>
             </li>
-            <li class="nav-item {{ $routeName == 'dashboard.order.index' || $routeName == 'dashboard.order.create' ? 'active' : '' }}">
+            <li class="nav-item {{ $routeName == 'dashboard.order.index' || $routeName == 'dashboard.order.create'|| $routeName == 'dashboard.order.show' ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('dashboard.order.index')}}">
                     <i class="material-icons">reorder</i>
                     <p>Order</p>

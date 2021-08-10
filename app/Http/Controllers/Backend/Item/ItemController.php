@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Shop\Shop;
+use App\Models\Shop\ShopBranch;
 use App\Models\Shop\ShopItem;
 use Illuminate\Http\Request;
 
@@ -29,10 +30,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $shopList = Shop::all();
+        $branches = ShopBranch::all();
         $categoryList = Category::all();
 
-        return view('dashboard.item.item_inputs',compact('shopList','categoryList'));
+        return view('dashboard.item.item_inputs',compact('branches','categoryList'));
     }
 
     /**

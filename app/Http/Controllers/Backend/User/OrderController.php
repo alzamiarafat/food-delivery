@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Order\Order;
 use App\Models\Order\OrderItem;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
+use PDF;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 
 class OrderController extends Controller
 {
@@ -23,14 +27,14 @@ class OrderController extends Controller
     {
         if (Auth::check()>0){
             $items = Cart::content();
-            $totalPrice = 0;
+            $subTotalPrice = 0;
 
             foreach ($items as $item){
                 $price = $item->price;
-                $totalPrice += $price;
+                $subTotalPrice += $price;
 
             }
-            return view('web.checkout',compact('totalPrice'));
+            return view('web.checkout',compact('subTotalPrice','items'));
         }else {
             return redirect()->route('login');
         }
@@ -47,7 +51,14 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::get();
+//        $orderList = Order::join('profiles','orders.user_id', '=', 'profiles.user_id')
+//            ->select('orders.*','profiles.full_name','profiles.contact_no')
+//            ->get();
+//
+//        $orderItems = OrderItem::join('items', 'items.id', '=', 'order_items.item_id')
+//            ->join('orders','orders.id','=','order_items.order_id')
+//            ->get();
+        $orders = Order::join('profiles','orders.user_id', '=', 'profiles.user_id')->get();
 
         if (auth()->user()->weight <= 9.99){
             return view('user.order.order_list',compact('orders'));
@@ -78,8 +89,11 @@ class OrderController extends Controller
         try {
             $order = new Order;
             $order->user_id = auth()->user()->id;
+            $order->order_id = 'Afood-'.rand(1000,99999);
             $order->sub_total = $request->sub_total;
-            $order->delivery_cost = $request->delivery_cost;
+            $order->delivery_type = $request->delivery_type;
+            $order->delivery_address = $request->delivery_address;
+            $order->delivery_cost = 60;
             $order->total = $request->total;
             $order->save();
             $orderId = Order::select('id')->orderBy('id', 'DESC')->first();
@@ -111,11 +125,36 @@ class OrderController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return null
      */
     public function show($id)
     {
-        return view('user.order.order_details');
+        $orders = Order::where('order_id',$id)->first();
+        $user = User::where('id',$orders->user_id)->first();
+
+        if (auth()->user()->weight <= 9.99){
+            return view('user.order.order_details',compact('orders','user'));
+        }else {
+            return view('dashboard.order.order_details',compact('orders','user'));
+        }}
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return null
+     */
+    public function invoice_print()
+    {
+//        $pdf = PDF::loadView('user.order.order_invoice');
+//        $a =  view('user.order.order_invoice');
+//
+//
+//
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML($a);
+//        return $pdf->stream();
+
     }
 
     /**

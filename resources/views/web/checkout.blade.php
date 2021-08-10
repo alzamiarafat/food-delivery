@@ -43,16 +43,22 @@
                                         <p>BDT {{ $cartItem->price }}</p>
                                         <a type="button" href="{{ route('cart.remove', $cartItem->rowId) }}"><i class="fa fa-trash"></i> Remove</a>
                                     </td>
+
                                     <td>
                                         <div class="col-md-2">
                                             <button class="form-control"><i class="fa fa-minus"></i></button>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="cvv" name="qty[]" value="{{ $cartItem->qty }}">
+                                            <input type="text" class="form-control" name="qty[]" value="{{ $cartItem->qty }}">
                                         </div>
                                         <div class="col-md-2">
                                             <button class="form-control"><i class="fa fa-plus"></i></button>
                                         </div>
+                                    </td>
+
+                                    <td>
+                                    <p>Total     <input type=number name="delivery_cost" id="delivery_cost" style="width: 100px" value="{{ $cartItem->price }}" readonly></p>
+
                                     </td>
                                 </tr>
                             </table>
@@ -69,24 +75,24 @@
                         <tr style="border: none">
                             <td><p>Sub Total</p></td>
                             <td class="text-right"><p>BDT</p></td>
-                            <td><p><input name="sub_total" style="width: 100px" value="{{ \Gloudemans\Shoppingcart\Facades\Cart::subTotal() }}" readonly></p></td>
+                            <td><p><input type=number name="sub_total" style="width: 100px" value="{{ $subTotalPrice }}" readonly></p></td>
                         </tr>
                         <tr>
                             <td><p>Delivery Cost</p></td>
                             <td class="text-right"><p>BDT</p></td>
-                            <td><p><input name="delivery_cost" style="width: 100px" value="{{ Cart::tax() }}" readonly></p></td>
+                            <td><p><input type=number name="delivery_cost" id="delivery_cost" style="width: 100px" value="0.00" readonly></p></td>
                         </tr>
                         <tr>
                             <td><p>Offer Price</p></td>
                             <td class="text-right"><p>BDT</p></td>
-                            <td><p><input name="delivery_cost" style="width: 100px" value="0.00" readonly></p></td>
+                            <td><p><input type=number name="delivery_cost"  style="width: 100px" value="0.00" readonly></p></td>
                         </tr>
                     </table>
                     <table class="table">
                         <tr>
-                            <td> <p class="pull-right">Total</p></td>
-                            <td style="margin-left: 12px"><p>BDT</p></td>
-                            <td><p><input name="total" style="width: 100px" value="{{ Cart::total() }}" readonly></p></td>
+                            <td> <p style="margin-left: 85px" class="pull-right">Total</p></td>
+                            <td><p>BDT</p></td>
+                            <td><p><input type=number name="totalPrice" id="totalPrice" style="width: 100px" value="{{ $subTotalPrice }}" readonly></p></td>
                         </tr>
                     </table>
                 </div>
@@ -96,16 +102,16 @@
                     <hr>
                     <label>Delivery Type</label>
                     <div class="form-check form-check-inline">
-                        <input type="radio" name="delivery_type" value="take_out">
+                        <input type="radio" id="delivery_type" name="delivery_type" value="take_out">
                         <span for="delivery_type">Take Out</span>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="radio" name="delivery_type" value="home_delivery">
+                        <input type="radio" id="delivery_type" name="delivery_type" value="home_delivery" required>
                         <span for="delivery_type">Home Delivery</span>
                     </div>
                     <br>
                     <div class="hide" id="addressInput">
-                        <input class="form-control" name="delivery address" placeholder="Enter delivery address"><br>
+                        <input class="form-control" name="delivery_address" id="delivery_address" placeholder="Enter delivery address"><br>
                     </div>
                 </div>
 
@@ -129,19 +135,37 @@
         $("input[name='delivery_type']").change(function(){
             if( $(this).val() == 'home_delivery'){
                 $('#addressInput').removeClass('hide')
+                $("#delivery_address").attr("required", "true");
             }else{
                 $('#addressInput').addClass('hide')
             }
-
         });
+
+        $('#delivery_address').change( function () {
+            $('#delivery_cost').val(60.00);
+            var value = $('#totalPrice').val();
+            $('#totalPrice').val(value-(-60.00));
+        })
     </script>
 
     @if(Session::has('order_success'))
         <script>
+            const el = document.createElement('div')
+            el.innerHTML = "<a class='btn btn-primary' href='http://google.com'>Pay Now</a>"
             swal("Successfully!","{!! 'Your Order has been successfully placed' !!}","success",{
+                title: "Hello!",
+                content: el,
+            })
+            setTimeout(function(){ window.location.href = '{{ route('home') }}'; }, 3000);
+        </script>
+    @endif
+
+    @if(Session::has('message_error'))
+        <script>
+            swal("Error!","{!! 'Something is wrong' !!}","error",{
 
             })
-            {{--setTimeout(function(){ window.location.href = '{{ route('home') }}'; }, 4000);--}}
+            {{--setTimeout(function(){ window.location.href = '{{ back() }}'; }, 3000);--}}
         </script>
     @endif
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Manager;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\Shop\Shop;
+use App\Models\Shop\ShopBranch;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,8 +36,9 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        $shopList = Shop::where('owner_id',auth()->user()->id)->get();
-        return view('dashboard.manager.manager_inputs',compact('shopList'));
+        $branches = ShopBranch::get();
+
+        return view('dashboard.manager.manager_inputs',compact('branches'));
     }
 
     /**
@@ -61,7 +63,7 @@ class ManagerController extends Controller
             'confirm_password' => 'required_with:password|same:password|min:8'
         ]);
 
-        try {
+//        try {
             $user = new User;
             $manager = new Profile;
 
@@ -87,12 +89,12 @@ class ManagerController extends Controller
 
             $user->save();
             $profile = $user->profile()->save($manager);
-            Shop::Where('id',$request->shop_id)->update(['manager_id'=>$profile->id]);
+//            Shop::Where('id',$request->shop_id)->update(['manager_id'=>$profile->id]);
 
             return redirect()->route('dashboard.manager.index')->with('message_success', 'Manager has been created successfully.');
-        }catch (\Exception $exception){
-            return redirect()->back()->with('message_error', 'Something went wrong.');
-        }
+//        }catch (\Exception $exception){
+//            return redirect()->back()->with('message_error', 'Something went wrong.');
+//        }
 
     }
 

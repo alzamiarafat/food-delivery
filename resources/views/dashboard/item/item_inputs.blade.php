@@ -41,11 +41,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Shop Name</label>
+                                    <label class="bmd-label-floating">Branch Code</label>
                                     <select class="form-control  @error('shop_name') is-invalid @enderror" name="shop_name">
                                         <option disabled selected>Choose One</option>
-                                        @foreach($shopList as $shop)
-                                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                                        @foreach($branches as $branch)
+                                            <option value="{{$branch->id}}">{{$branch->branch_code}}</option>
                                         @endforeach
                                     </select>
 

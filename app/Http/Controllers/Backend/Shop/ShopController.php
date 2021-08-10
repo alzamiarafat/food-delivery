@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Shop;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Shop\Shop;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoryList = Category::all();
-        return view('dashboard.category.category_list',compact('categoryList'));
+        $shopList = Shop::all();
+        return view('dashboard.shop.shop_list', compact('shopList'));
+
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.shop.shop_inputs');
     }
 
     /**
@@ -40,27 +40,21 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'serial_no' => 'numeric'
+            'contact_no' => 'required',
+            'email' => 'required',
         ]);
-        $category = new Category;
-        $category->category_code = $request->category_code;
-        $category->name = $request->name;
-        $category->serial_no = $request->serial_no;
-        if ($request->hasFile('image')) {
-            $get_photo = $request->file('image');
-            $photo = 'category_' . str_replace(' ', '_', $request->name) . time() . "." . $get_photo->extension();
-            $get_photo->move(Category::PATH, $photo);
-            $category->image = $photo;
-        }
-        if ($request->hasFile('icon')) {
-            $get_icon = $request->file('icon');
-            $icon = 'icon_' . str_replace(' ', '_', $request->name) . time() . "." . $get_icon->extension();
-            $get_icon->move(Category::PATH, $icon);
-            $category->icon = $icon;
-        }
-        $category->save();
+        $shop = new Shop;
+        $shop->owner_id = auth()->user()->id;
+        $shop->shop_code = $request->shop_code;
+        $shop->name = $request->name;
+        $shop->contact_no= $request->contact_no;
+        $shop->email = $request->email;
+        $shop->since = $request->since;
+        $shop->status = 1;
+        $shop->save();
 
-        return back()->with('message_success', 'Category has been created successfully.');
+        return redirect()->route('dashboard.shop.index')->with('message_success', 'Shop has been created successfully.');
+
     }
 
     /**

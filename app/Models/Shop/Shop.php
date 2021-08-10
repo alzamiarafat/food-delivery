@@ -10,8 +10,8 @@ class Shop extends Model
 {
     use HasFactory;
 
-    public function manager()
+    public function branch()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasMany(ShopBranch::class);
     }
 }

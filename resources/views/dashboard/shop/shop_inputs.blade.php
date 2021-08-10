@@ -63,13 +63,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Adress</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" data-validation="required">
 
-                                    @error('address')
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Since</label>
+                                    <input type="date" class="form-control @error('since') is-invalid @enderror" name="since">
+
+                                    @error('since')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -77,60 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Division</label>
-                                    <input type="text" class="form-control @error('division') is-invalid @enderror" name="division">
 
-                                    @error('division')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">District</label>
-                                    <input type="text" class="form-control @error('district') is-invalid @enderror" name="district">
-
-                                    @error('district')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Thana</label>
-                                    <input type="text" class="form-control @error('thana') is-invalid @enderror" name="thana">
-
-                                    @error('thana')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating"> Postal Code</label>
-                                        <input type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" data-validation="length" data-validation-length="min4">
-
-                                        @error('postal_code')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <button type="submit" class="btn btn-primary pull-right">Save</button>
                         <div class="clearfix"></div>
                     </form>
