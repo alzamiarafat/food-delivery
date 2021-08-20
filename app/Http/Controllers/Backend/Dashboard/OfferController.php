@@ -80,7 +80,7 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        //
+        return response->json("sdjhgjds");
     }
 
     /**
